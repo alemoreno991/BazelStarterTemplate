@@ -1,4 +1,5 @@
-build --action_env=NIX_LD=$NIX_LD
-build --action_env=NIX_LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
-build --host_action_env=NIX_LD=$NIX_LD
-build --host_action_env=NIX_LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+# build --action_env=NIX_LD=$NIX_LD
+# build --action_env=NIX_LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+# build --host_action_env=NIX_LD=$NIX_LD
+# build --host_action_env=NIX_LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+build --jobs=8

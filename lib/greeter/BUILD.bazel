@@ -3,5 +3,5 @@ cc_library(
     hdrs = [ "include/greeter.h" ],
     srcs = [ "src/greeter.cpp" ],
     deps = [ "@fmt" ],
-    visibility = [ "public" ],
+    visibility = [ "//visibility:public" ],
 )

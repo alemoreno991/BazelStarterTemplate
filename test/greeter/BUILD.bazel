@@ -8,7 +8,7 @@ cc_test(
 
     deps = [
 	"//lib/greeter",
-	"@doctest",
+	"@doctest//doctest",
         "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],

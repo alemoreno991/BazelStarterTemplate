@@ -10,8 +10,12 @@
 
   # https://devenv.sh/packages/
   packages = [
+    # Packages needed by the project
     pkgs.git
     pkgs.bazel_7
+
+    # This packages are only needed as a work around in NixOS.
+    pkgs.distrobox
   ];
 
   # https://devenv.sh/languages/
@@ -24,13 +28,39 @@
   # services.postgres.enable = true;
 
   # https://devenv.sh/scripts/
-  scripts.hello.exec = ''
-    echo hello from $GREET
+  scripts.distrobox-init.exec = ''
+    # In the devenv shell: create a distrobox container to be able to have a
+    # Filesystem Hierarchy Standard (FHS) env, which is assumed by Bazel!
+    #
+    # Additionally, it was found that the distrobox container was missing the
+    # ca-certificates of the host so we mount them with:
+    #
+    #   `--volume /etc/ssl/cert:/etc/ssl/certs:ro`
+    #
+
+    # Check if the container exists
+    if ! distrobox list | grep -q "ubuntubox"; then
+      # The container does not exist. Thus, create it
+      echo "Creating distrobox container 'ubuntubox'..."
+      distrobox create \
+        --volume /etc/ssl/certs:/etc/ssl/certs:ro \
+        --name ubuntubox \
+        --image ubuntu:22.04
+    else
+      echo "Distrobox container 'ubuntubox' already exists (I'll use it)"
+    fi
+
+    # Enter the distrobox container
+    distrobox enter ubuntubox
   '';
 
   enterShell = ''
-    hello
-    git --version
+    #################
+    # Only for NixOS
+    #################
+    if uname -a | grep -q "NixOS"; then
+      distrobox-init
+    fi
   '';
 
   # https://devenv.sh/tasks/
@@ -59,9 +89,9 @@
     # List of file types to run on (default: [ "file" ] (all files))
     # see also https://pre-commit.com/#filtering-files-with-types
     # You probably only need to specify one of `files` or `types`:
-    types = ["c" "cpp"];
+    types = ["c" "c++"];
     # Exclude files that were matched by these patterns (default: [ ] (none)):
-    excludes = ["irrelevant\\.c"];
+    excludes = [];
     # The language of the hook - tells pre-commit
     # how to install the hook (default: "system")
     # see also https://pre-commit.com/#supported-languages

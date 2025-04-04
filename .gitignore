@@ -1,3 +1,11 @@
+# C++ stuff
+compile_commands.json
+.cache
+
+# Bazel
+bazel-*
+external
+
 # Devenv
 .devenv*
 devenv.local.nix
