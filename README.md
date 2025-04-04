@@ -32,3 +32,7 @@ Assuming you have already created the distrobox container, you need to enter it 
 # Enter the distrobox container
 distrobox enter ubuntubox
 ```
+
+# Acknowledgments
+
+This is heavily influenced by [ModernCppStarter](https://github.com/TheLartians/ModernCppStarter.git).
