@@ -80,28 +80,70 @@
 
   # https://devenv.sh/pre-commit-hooks/
   # pre-commit.hooks.shellcheck.enable = true;
-  pre-commit.hooks.formatting = {
-    enable = true;
-    # The name of the hook (appears on the report table):
-    name = "Formatting";
-    # The command to execute (mandatory):
-    entry = "bazel run //:format";
-    # The pattern of files to run on (default: "" (all))
-    # see also https://pre-commit.com/#hooks-files
-    files = "";
-    # List of file types to run on (default: [ "file" ] (all files))
-    # see also https://pre-commit.com/#filtering-files-with-types
-    # You probably only need to specify one of `files` or `types`:
-    types = ["c" "c++"];
-    # Exclude files that were matched by these patterns (default: [ ] (none)):
-    excludes = [];
-    # The language of the hook - tells pre-commit
-    # how to install the hook (default: "system")
-    # see also https://pre-commit.com/#supported-languages
-    language = "system";
-    # Set this to false to not pass the changed files
-    # to the command (default: true):
-    pass_filenames = true;
+  pre-commit.hooks = {
+    # Static checker for GitHub Actions workflow files
+    actionlint.enable = true;
+
+    # Nix code formatter
+    alejandra.enable = true;
+
+    # Check syntax of JSON files
+    check-json.enable = true;
+
+    # Check syntax of YAML files
+    check-yaml.enable = true;
+
+    # Check wheater the current commit message follows committing rules
+    commitizen.enable = true;
+
+    # Detect the presence of private keys
+    detect-private-keys.enable = true;
+
+    # Ensures that the file is either empty, or ends with a single newline
+    end-of-file-fixer.enable = true;
+
+    # Style checker and linter for markdown files
+    markdownlint.enable = true;
+
+    # Resolve mixed line endings
+    mixed-line-endings.enable = true;
+
+    # Disallow commiting to certain branch/branches
+    no-commit-to-branch.enable = true;
+
+    # Prevent commiting secret keys into your source code
+    ripsecrets.enable = true;
+
+    # Format shell files
+    shellcheck.enable = true;
+
+    # Trim trailing whitespace
+    trim-trailing-whitespace.enable = true;
+
+    # Custom hook to perform formatting via Bazel
+    formatting = {
+      enable = true;
+      # The name of the hook (appears on the report table):
+      name = "Formatting";
+      # The command to execute (mandatory):
+      entry = "bazel run //:format";
+      # The pattern of files to run on (default: "" (all))
+      # see also https://pre-commit.com/#hooks-files
+      files = "";
+      # List of file types to run on (default: [ "file" ] (all files))
+      # see also https://pre-commit.com/#filtering-files-with-types
+      # You probably only need to specify one of `files` or `types`:
+      types = ["c" "c++"];
+      # Exclude files that were matched by these patterns (default: [ ] (none)):
+      excludes = [];
+      # The language of the hook - tells pre-commit
+      # how to install the hook (default: "system")
+      # see also https://pre-commit.com/#supported-languages
+      language = "system";
+      # Set this to false to not pass the changed files
+      # to the command (default: true):
+      pass_filenames = true;
+    };
   };
 
   # See full reference at https://devenv.sh/reference/options/
