@@ -16,6 +16,9 @@
 
     # This packages are only needed as a work around in NixOS.
     pkgs.distrobox
+
+    # Utilities
+    pkgs.commitizen
   ];
 
   # https://devenv.sh/languages/
