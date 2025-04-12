@@ -79,52 +79,79 @@
   '';
 
   # https://devenv.sh/pre-commit-hooks/
-  # pre-commit.hooks.shellcheck.enable = true;
   pre-commit.hooks = {
-    # Static checker for GitHub Actions workflow files
-    actionlint.enable = true;
+    actionlint = {
+      enable = true;
+      description = "Static checker for GitHub Actions workflow files";
+    };
 
-    # Nix code formatter
-    alejandra.enable = true;
+    alejandra = {
+      enable = true;
+      description = "Nix code formatter";
+    };
 
-    # Check syntax of JSON files
-    check-json.enable = true;
+    check-json = {
+      enable = true;
+      description = "Check syntax of JSON files";
+    };
 
-    # Check syntax of YAML files
-    check-yaml.enable = true;
+    check-yaml = {
+      enable = true;
+      description = "Check syntax of YAML files";
+    };
 
-    # Check wheater the current commit message follows committing rules
-    commitizen.enable = true;
+    commitizen = {
+      enable = true;
+      description = "Check wheater the current commit message follows committing rules";
+    };
 
-    # Detect the presence of private keys
-    detect-private-keys.enable = true;
+    detect-private-keys = {
+      enable = true;
+      description = "Detect the presence of private keys";
+    };
 
-    # Ensures that the file is either empty, or ends with a single newline
-    end-of-file-fixer.enable = true;
+    end-of-file-fixer = {
+      enable = true;
+      description = "Ensures that the file is either empty, or ends with a single newline";
+    };
 
-    # Style checker and linter for markdown files
-    markdownlint.enable = true;
+    markdownlint = {
+      enable = true;
+      description = "Style checker and linter for markdown files";
+    };
 
-    # Resolve mixed line endings
-    mixed-line-endings.enable = true;
+    mixed-line-endings = {
+      enable = true;
+      description = "Resolve mixed line endings";
+    };
 
-    # Disallow commiting to certain branch/branches
-    no-commit-to-branch.enable = true;
+    no-commit-to-branch = {
+      enable = true;
+      description = "Disallow commiting to `main`";
+      settings.branch = ["main"];
+    };
 
-    # Prevent commiting secret keys into your source code
-    ripsecrets.enable = true;
+    ripsecrets = {
+      enable = true;
+      description = "Prevent commiting secret keys into your source code";
+    };
 
-    # Format shell files
-    shellcheck.enable = true;
+    shellcheck = {
+      enable = true;
+      description = "Format shell files";
+    };
 
-    # Trim trailing whitespace
-    trim-trailing-whitespace.enable = true;
+    trim-trailing-whitespace = {
+      enable = true;
+      description = "Trim trailing whitespace";
+    };
 
     # Custom hook to perform formatting via Bazel
     formatting = {
       enable = true;
       # The name of the hook (appears on the report table):
       name = "Formatting";
+      description = "Formatting the source code with rules_lint (Bazel)";
       # The command to execute (mandatory):
       entry = "bazel run //:format";
       # The pattern of files to run on (default: "" (all))
