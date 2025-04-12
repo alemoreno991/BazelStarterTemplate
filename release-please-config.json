@@ -1,3 +1,7 @@
 {
-  "release-type": "bazel"
+  "release-type": "bazel",
+  "include-component-in-tag": false,
+  "packages": {
+    ".": {}
+  }
 }
