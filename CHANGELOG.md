@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.2.0...v1.3.0) (2025-04-12)
+
+
+### Features
+
+* fake ([7604e6e](https://github.com/alemoreno991/BazelStarterTemplate/commit/7604e6eb97e726eacac528b7cf4a604cf1462b2e))
+* fake ([0d22bb6](https://github.com/alemoreno991/BazelStarterTemplate/commit/0d22bb618686e9cd76ba2e83bf295a0ddd15fccd))
+
 ## [1.2.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.1.0...v1.2.0) (2025-04-12)
 
 
