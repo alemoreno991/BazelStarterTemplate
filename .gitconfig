@@ -1,8 +1,0 @@
-[user]
-    name = Alejandro Moreno
-    email = ale.moreno991@gmail.com
-[core]
-    editor = nvim
-[alias]
-    commit = cz commit
-    hi !echo 'hello'
