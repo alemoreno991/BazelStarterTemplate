@@ -12,7 +12,7 @@
   packages = [
     # Packages needed by the project
     pkgs.git
-    pkgs.bazel_7
+    pkgs.bazelisk
 
     # This packages are only needed as a work around in NixOS.
     pkgs.distrobox
@@ -46,7 +46,6 @@
       # The container does not exist. Thus, create it
       echo "Creating distrobox container 'ubuntubox'..."
       distrobox create \
-        --volume /etc/ssl/certs:/etc/ssl/certs:ro \
         --name ubuntubox \
         --image ubuntu:22.04
     else
@@ -58,6 +57,13 @@
   '';
 
   enterShell = ''
+    # WARNING: This is not as naive as it looks!
+    # At least in NixOS this is needed because once inside distrobox there are
+    # some issues with certificates. By doing this here, we download the
+    # Aspect CLI and the Bazel version needed by the project even before
+    # enterning distrobox, hence, avoiding the problem.
+    bazelisk version
+
     #################
     # Only for NixOS
     #################
