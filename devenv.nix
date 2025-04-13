@@ -103,6 +103,7 @@
     commitizen = {
       enable = true;
       description = "Check wheater the current commit message follows committing rules";
+      stages = ["commit-msg"];
     };
 
     detect-private-keys = {
