@@ -119,3 +119,26 @@ llvm.sysroot(
 )
 use_repo(llvm, "llvm_toolchain")
 register_toolchains("@llvm_toolchain//:all", dev_dependency = True)
+
+###############################################################################
+# Containarize your application
+#
+# TIP: For testing, https://registry.bazel.build/modules/container_structure_test
+###############################################################################
+bazel_dep(name = "rules_oci", version = "2.2.5")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+# Pull needed base image
+oci.pull(
+    name = "docker_lib_ubuntu",
+    image = "docker.io/library/ubuntu",
+    platforms = [
+        "linux/arm64/v8",
+        "linux/amd64",
+    ],
+    tag = "rolling",
+)
+# Expose the base image
+use_repo(oci, "docker_lib_ubuntu")
