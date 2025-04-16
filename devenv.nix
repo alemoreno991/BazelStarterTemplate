@@ -14,9 +14,6 @@
     pkgs.git
     pkgs.bazelisk
 
-    # This packages are only needed as a work around in NixOS.
-    pkgs.distrobox
-
     # Utilities
     pkgs.commitizen
   ];
@@ -31,30 +28,6 @@
   # services.postgres.enable = true;
 
   # https://devenv.sh/scripts/
-  scripts.distrobox-init.exec = ''
-    # In the devenv shell: create a distrobox container to be able to have a
-    # Filesystem Hierarchy Standard (FHS) env, which is assumed by Bazel!
-    #
-    # Additionally, it was found that the distrobox container was missing the
-    # ca-certificates of the host so we mount them with:
-    #
-    #   `--volume /etc/ssl/cert:/etc/ssl/certs:ro`
-    #
-
-    # Check if the container exists
-    if ! distrobox list | grep -q "ubuntubox"; then
-      # The container does not exist. Thus, create it
-      echo "Creating distrobox container 'ubuntubox'..."
-      distrobox create \
-        --name ubuntubox \
-        --image ubuntu:22.04
-    else
-      echo "Distrobox container 'ubuntubox' already exists (I'll use it)"
-    fi
-
-    # Enter the distrobox container
-    distrobox enter ubuntubox
-  '';
 
   enterShell = ''
     # WARNING: This is not as naive as it looks!
@@ -63,13 +36,6 @@
     # Aspect CLI and the Bazel version needed by the project even before
     # enterning distrobox, hence, avoiding the problem.
     bazelisk version
-
-    #################
-    # Only for NixOS
-    #################
-    if uname -a | grep -q "NixOS"; then
-      distrobox-init
-    fi
   '';
 
   # https://devenv.sh/tasks/
