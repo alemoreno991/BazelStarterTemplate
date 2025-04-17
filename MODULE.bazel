@@ -14,12 +14,14 @@ bazel_dep(name = "doctest", version = "2.4.11")
 # Starlark implementation of Doxygen rules in Bazel to automatically document the codebase
 # https://github.com/TendTo/rules_doxygen
 bazel_dep(name = "rules_doxygen", version = "2.1.0", dev_dependency = True)
+
 doxygen_extension = use_extension("@rules_doxygen//:extensions.bzl", "doxygen_extension")
+
 # Use the local doxygen installation on x86
 doxygen_extension.configuration(
-    version = "1.10.0",
-    sha256 = "dcfc9aa4cc05aef1f0407817612ad9e9201d9bf2ce67cecf95a024bba7d39747",
     platform = "linux",
+    sha256 = "dcfc9aa4cc05aef1f0407817612ad9e9201d9bf2ce67cecf95a024bba7d39747",
+    version = "1.10.0",
 )
 use_repo(doxygen_extension, "doxygen")
 
@@ -29,6 +31,7 @@ use_repo(doxygen_extension, "doxygen")
 # Formatting and Linting
 # https://github.com/aspect-build/rules_lint
 bazel_dep(name = "aspect_rules_lint", version = "1.2.2")
+
 # Hedron's Compile Commands Extractor for Bazel
 # https://github.com/hedronvision/bazel-compile-commands-extractor
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
@@ -61,6 +64,7 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 """
+
 # INTEL/AMD64 Sysroot. LastModified: 2024-04-26T19:15
 # https://commondatastorage.googleapis.com/chrome-linux-sysroot/
 http_archive(
@@ -118,4 +122,33 @@ llvm.sysroot(
     targets = ["linux-aarch64"],
 )
 use_repo(llvm, "llvm_toolchain")
-register_toolchains("@llvm_toolchain//:all", dev_dependency = True)
+
+register_toolchains(
+    "@llvm_toolchain//:all",
+    dev_dependency = True,
+)
+
+###############################################################################
+# Containarize your application
+#
+# TIP: For testing, https://registry.bazel.build/modules/container_structure_test
+###############################################################################
+bazel_dep(name = "rules_oci", version = "2.2.5")
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+bazel_dep(name = "tweag-credential-helper", version = "0.0.5")
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+
+# Pull needed base image
+oci.pull(
+    name = "docker_lib_ubuntu",
+    image = "docker.io/library/ubuntu",
+    platforms = [
+        "linux/arm64/v8",
+        "linux/amd64",
+    ],
+    tag = "rolling",
+)
+
+# Expose the base image
+use_repo(oci, "docker_lib_ubuntu", "docker_lib_ubuntu_linux_amd64", "docker_lib_ubuntu_linux_arm64_v8")
