@@ -16,6 +16,8 @@
 
     # Utilities
     pkgs.commitizen
+    pkgs.jq
+    pkgs.crane
   ];
 
   # https://devenv.sh/languages/
