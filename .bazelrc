@@ -1,4 +1,2 @@
 # replace this with your registry of choice
 common --credential_helper=index.docker.io=%workspace%/tools/credential-helper
-
-build --jobs=8
