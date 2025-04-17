@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.3.0...v2.0.0) (2025-04-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **nixos-compatibility:** Closes #31
+
+### Bug Fixes
+
+* **pre-commit:** pre-commit hook for commitizen ([#25](https://github.com/alemoreno991/BazelStarterTemplate/issues/25)) ([885ddf4](https://github.com/alemoreno991/BazelStarterTemplate/commit/885ddf4f8eb636c42e9d327574b5db0bbeebb569))
+
+
+### Build System
+
+* **nixos-compatibility:** build system compatible with nixos ([#32](https://github.com/alemoreno991/BazelStarterTemplate/issues/32)) ([7b2718c](https://github.com/alemoreno991/BazelStarterTemplate/commit/7b2718cbbb39e8647a597e85ddb7ffcbfb4d5ad1))
+
 ## [1.3.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.2.0...v1.3.0) (2025-04-12)
 
 
