@@ -32,11 +32,7 @@
   # https://devenv.sh/scripts/
 
   enterShell = ''
-    # WARNING: This is not as naive as it looks!
-    # At least in NixOS this is needed because once inside distrobox there are
-    # some issues with certificates. By doing this here, we download the
-    # Aspect CLI and the Bazel version needed by the project even before
-    # enterning distrobox, hence, avoiding the problem.
+    # Show the bazel version used by the project
     bazelisk version
   '';
 
