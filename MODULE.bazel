@@ -86,30 +86,31 @@ http_archive(
 # Configure and register the toolchain.
 llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm", dev_dependency = True)
 
-# LLVM Versions and platforms
-# https://github.com/bazel-contrib/toolchains_llvm/blob/master/toolchain/internal/llvm_distributions.bzl
-# llvm.toolchain(
-#     name = "llvm_toolchain",
-#     llvm_version = "18.1.7",
-#     stdlib = {
-#         "linux-x86_64": "stdc++",
-#         "linux-aarch64": "stdc++",
-#     },
-#     cxx_standard = {
-# 	"18.1.7": "c++20",
-#     },
-# )
 llvm.toolchain(
     name = "llvm_toolchain",
     llvm_version = "19.1.6",
-    sha256 = {"linux-x86_64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531"},
+    sha256 = {
+        "linux-x86_64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531",
+        "linux-aarch64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531",
+    },
     strip_prefix = {
         "linux-x86_64": "LLVM-19.1.6-Linux-X64",
+        "linux-aarch64": "clang+llvm-19.1.6-aarch64-linux-gnu",
     },
     urls = {
         "linux-x86_64": [
             "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/LLVM-19.1.6-Linux-X64.tar.xz",
         ],
+        "linux-aarch64": [
+            "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/clang+llvm-19.1.6-aarch64-linux-gnu.tar.xz",
+        ],
+    },
+    stdlib = {
+        "linux-x86_64": "stdc++",
+        "linux-aarch64": "stdc++",
+    },
+    cxx_standard = {
+        "19.1.6": "c++23",
     },
 )
 llvm.sysroot(
@@ -119,6 +120,7 @@ llvm.sysroot(
 )
 llvm.sysroot(
     name = "llvm_toolchain",
+    label = "@sysroot_linux_aarch64//:sysroot",
     targets = ["linux-aarch64"],
 )
 use_repo(llvm, "llvm_toolchain")

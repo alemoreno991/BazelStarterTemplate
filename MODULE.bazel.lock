@@ -1295,7 +1295,7 @@
     "@@toolchains_llvm~//toolchain/extensions:llvm.bzl%llvm": {
       "general": {
         "bzlTransitiveDigest": "afRF0aFOIUrkYl3o040WQ606ep1qciEXzjnAxT3Kek8=",
-        "usagesDigest": "gts6FUCL96v3mTcyYlvbEsMmfJ/ue2GTI/DT5H+2CI8=",
+        "usagesDigest": "hw228HF4+MmGeFK34Ic0lSwufwwsVaPAHYc1AypyGN0=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -1315,14 +1315,19 @@
               "llvm_versions": {},
               "netrc": "",
               "sha256": {
-                "linux-x86_64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531"
+                "linux-x86_64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531",
+                "linux-aarch64": "d55dcbb309de7ade4e3073ec3ac3fac4d3ff236d54df3c4de04464fe68bec531"
               },
               "strip_prefix": {
-                "linux-x86_64": "LLVM-19.1.6-Linux-X64"
+                "linux-x86_64": "LLVM-19.1.6-Linux-X64",
+                "linux-aarch64": "clang+llvm-19.1.6-aarch64-linux-gnu"
               },
               "urls": {
                 "linux-x86_64": [
                   "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/LLVM-19.1.6-Linux-X64.tar.xz"
+                ],
+                "linux-aarch64": [
+                  "https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.6/clang+llvm-19.1.6-aarch64-linux-gnu.tar.xz"
                 ]
               }
             }
@@ -1339,7 +1344,9 @@
               "coverage_link_flags": {},
               "cxx_builtin_include_directories": {},
               "cxx_flags": {},
-              "cxx_standard": {},
+              "cxx_standard": {
+                "19.1.6": "c++23"
+              },
               "dbg_compile_flags": {},
               "exec_arch": "",
               "exec_os": "",
@@ -1352,13 +1359,16 @@
               },
               "opt_compile_flags": {},
               "opt_link_flags": {},
-              "stdlib": {},
+              "stdlib": {
+                "linux-x86_64": "stdc++",
+                "linux-aarch64": "stdc++"
+              },
               "target_settings": {},
               "unfiltered_compile_flags": {},
               "toolchain_roots": {},
               "sysroot": {
                 "linux-x86_64": "'@@_main~_repo_rules~sysroot_linux_x64//:sysroot'",
-                "linux-aarch64": "None"
+                "linux-aarch64": "'@@_main~_repo_rules~sysroot_linux_aarch64//:sysroot'"
               }
             }
           }
