@@ -19,23 +19,49 @@ pkg_tar(
 # Correspondigly, use language-specific distroless images.
 # Here we use docker.io/library/ubuntu image for this C++ program.
 oci_image(
-    name = "image",
+    name = "image_linux_x86_64",
     base = "@docker_lib_ubuntu",
     tars = [":tar"],
     entrypoint = ["/hello-world"],
+    target_compatible_with = [
+        "@platforms//cpu:x86_64",
+        "@platforms//os:linux",
+    ],
+)
+
+oci_image(
+    name = "image_linux_aarch64",
+    base = "@docker_lib_ubuntu",
+    tars = [":tar"],
+    entrypoint = ["/hello-world"],
+    target_compatible_with = [
+        "@platforms//cpu:aarch64",
+        "@platforms//os:linux",
+    ],
 )
 
 oci_push(
-    name = "push_image",
-    image = ":image",
+    name = "push_image_linux_x86_64",
+    image = ":image_linux_x86_64",
     remote_tags = ["latest"],
-    repository = "ghcr.io/alemoreno991/hello-world",
+    repository = "ghcr.io/alemoreno991/linux_x86_64/hello-world",
+)
+oci_push(
+    name = "push_image_linux_aarch64",
+    image = ":image_linux_aarch64",
+    remote_tags = ["latest"],
+    repository = "ghcr.io/alemoreno991/linux_aarch64/hello-world",
 )
 
 # Use with 'bazel run' to load the oci image into a container runtime.
 # The image is designated using `repo_tags` attribute.
 oci_load(
-    name = "image_load",
-    image = ":image",
+    name = "load_image_linux_x86_64",
+    image = ":image_linux_x86_64",
+    repo_tags = ["hello-world:latest"],
+)
+oci_load(
+    name = "load_image_linux_aarch64",
+    image = ":image_linux_aarch64",
     repo_tags = ["hello-world:latest"],
 )
