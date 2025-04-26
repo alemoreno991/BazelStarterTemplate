@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.0...v2.0.1) (2025-04-26)
+
+
+### Bug Fixes
+
+* **ci:** authenticate bazel in ci ([#55](https://github.com/alemoreno991/BazelStarterTemplate/issues/55)) ([3a51633](https://github.com/alemoreno991/BazelStarterTemplate/commit/3a516338cefebbbdfb2d87be22d1e0e0ae511f16))
+
 ## [2.0.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.3.0...v2.0.0) (2025-04-26)
 
 
