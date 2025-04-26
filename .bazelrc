@@ -3,3 +3,15 @@ common --repo_env=OCI_GET_TOKEN_ALLOW_FAIL=1
 
 # replace this with your registry of choice
 common --credential_helper=index.docker.io=%workspace%/tools/credential-helper
+
+# Build for aarch64 or x86_64
+build:aarch64 --platforms=@toolchains_llvm//platforms:linux-aarch64
+build:x86_64 --platforms=@toolchains_llvm//platforms:linux-x86_64
+
+# This tells Bazel how to interact with the version control system
+build --stamp --workspace_status_command=./tools/bazel_stamp_vars.sh
+
+# Alias for the build setting
+build --flag_alias=revision_mode=//:revision_mode
+build --flag_alias=release_version=//:release_version
+build --flag_alias=commit_sha=//:commit_sha
