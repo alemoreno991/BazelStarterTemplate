@@ -32,11 +32,9 @@
   # https://devenv.sh/scripts/
   scripts.credential-helper.exec = ''
     # Intall the credential-helper
-    bazelisk run @tweag-credential-helper//installer
-
+    CREDENTIAL_HELPER_PATH=$(bazelisk run @tweag-credential-helper//installer)
     # Make the credential-helper executable
-    HASH=$(echo -n "$(pwd)" | md5sum | awk '{print $1}')
-    chmod +x "$XDG_CACHE_HOME/tweag-credential-helper/$HASH/bin/credential-helper"
+    chmod +x "$CREDENTIAL_HELPER_PATH"
   '';
 
   enterShell = ''
