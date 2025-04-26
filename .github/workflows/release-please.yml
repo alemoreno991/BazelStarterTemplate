@@ -46,6 +46,40 @@ jobs:
           # Share repository cache between workflows.
           repository-cache: true
 
+      - name: Build & Push OCI Image
+        # Build and push OCI image to Image Registry
+        id: build-push-oci-image
+        run: |
+          # Build and push the oci images
+          # NOTE: this will generate tarballs as intermediate steps
+          SEMANTIC_VERSION="$(jq '.["."]' .release-please-manifest.json)"
+          bazelisk run standalone:push_image --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}"
+          # Save the image registry url where the oci image is stored
+          REGISTRY_URL=$(bazelisk cquery standalone:repositories --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null)
+          # Save the tag of the oci image
+          IMAGE_TAG=$(bazelisk cquery standalone:release-tags --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null)
+          # Save the paths where the tarballs are located
+          TARBALLS_PATHS=$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null)
+          {
+            # Make the registry_url and the image tag available as an output var
+            echo "REGISTRY_URL=${REGISTRY_URL}";
+            echo "IMAGE_TAG=${IMAGE_TAG}";
+            # Make the tarball path available as an output variable from this step
+            echo "TARBALL_AARCH64_PATH=$(${TARBALLS_PATHS} | grep aarch64)";
+            echo "TARBALL_X86_64_PATH=$(${TARBALLS_PATHS} | grep x86_64)"
+          } >> "GITHUB_OUTPUT"
+
+      - name: Upload tarball x86_64 (binaries) to release
+        uses: svenstaro/upload-release-action@v2
+        env:
+          REGISTRY_URL: ${{ steps.build-push-oci-image.outputs.REGISTRY_URL }}
+          IMAGE_TAG: ${{ steps.build-push-oci-image.outputs.IMAGE_TAG }}
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./{${{ steps.build-push-oci-image.outputs.TARBALL_X86_64_PATH }},${{ steps.build-push-oci-image.outputs.TARBALL_AARCH64_PATH }}}
+          tag: ${{ github.ref }}
+          body: "Pull the oci image as follows:\n> docker pull ${REGISTRY_URL}/${IMAGE_TAG}"
+
       - name: Build Documentation
         # Always use bazelisk rather than bazel to
         # guarantee that the correct version of Bazel
