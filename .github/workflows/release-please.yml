@@ -26,7 +26,7 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
-  release-documentation:
+  release-artifacts:
     if: ${{ needs.release-please.outputs.release_created }}
     runs-on: ubuntu-latest
     needs: release-please
@@ -45,6 +45,14 @@ jobs:
           disk-cache: ${{ github.workflow }}
           # Share repository cache between workflows.
           repository-cache: true
+
+      - name: Authenticate Bazel
+        run: |
+          # Intall the credential-helper
+          bazelisk run @tweag-credential-helper//installer
+          # Make the credential-helper executable
+          HASH=$(echo -n "$(pwd)" | md5sum | awk '{print $1}')
+          chmod +x "$XDG_CACHE_HOME/tweag-credential-helper/$HASH/bin/credential-helper"
 
       - name: Build & Push OCI Image
         # Build and push OCI image to Image Registry
