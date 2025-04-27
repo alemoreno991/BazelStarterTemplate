@@ -67,45 +67,42 @@ jobs:
         run: |
           # Build and push the oci images
           # NOTE: this will generate tarballs as intermediate steps
-          echo
+          echo ""
           echo "**************************************"
           echo "Building and pushing the oci image..."
-          echo "**************************************"
           SEMANTIC_VERSION="$(jq -r '.["."]' .release-please-manifest.json)"
           bazelisk run standalone:push_image --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}"
+          echo "**************************************"
           # Save the image registry url where the oci image is stored
-          echo
+          echo ""
           echo "**************************************"
           echo "Saving the REGISTRY_URL"
-          echo "**************************************"
           REGISTRY_URL="$(bazelisk cquery standalone:repositories --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | xargs -r cat)"
           echo "REGISTRY_URL: ${REGISTRY_URL}"
+          echo "**************************************"
           # Save the tag of the oci image
-          echo
+          echo ""
           echo "**************************************"
           echo "Saving the IMAGE_TAG"
-          echo "**************************************"
           IMAGE_TAG="$(bazelisk cquery standalone:release-tags --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | xargs -r cat)"
           echo "IMAGE_TAG: ${IMAGE_TAG}"
+          echo "**************************************"
           # Save the paths where the tarballs are located
-          echo
+          echo ""
           echo "**************************************"
-          echo "Saving the TARBALL_X86_64_PATH"
-          echo "**************************************"
-          TARBALL_X86_64_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' | grep x86_64)"
+          echo "Saving the tarballs' paths to 'tarball_paths.txt'"
+          bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' > tarball_paths.txt
+          TARBALL_X86_64_PATH="$(grep x86_64 tarball_paths.txt)"
+          TARBALL_AARCH64_PATH="$(grep aarch64 tarball_paths.txt)"
           echo "TARBALL_X86_64_PATH: ${TARBALL_X86_64_PATH}"
-          echo
-          echo "**************************************"
-          echo "Saving the TARBALL_AARCH64_PATH"
-          echo "**************************************"
-          TARBALL_AARCH64_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' | grep aarch64)"
           echo "TARBALL_AARCH64_PATH: ${TARBALL_AARCH64_PATH}"
-          echo
+          echo "**************************************"
+          echo ""
           echo "**************************************"
           echo "Saving the BAZEL_EXEC_ROOT"
-          echo "**************************************"
           BAZEL_EXEC_ROOT="$(bazelisk info execution_root)"
           echo "BAZEL_EXEC_ROOT: ${BAZEL_EXEC_ROOT}"
+          echo "**************************************"
           {
             # Make the registry_url and the image tag available as an output var
             echo "REGISTRY_URL=${REGISTRY_URL}";
