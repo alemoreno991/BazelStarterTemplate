@@ -29,8 +29,8 @@ pkg_tar(
     name = "tar",
     srcs = [":hello-world"],
     package_file_name = select({
-        "//:is_release": "{product_name}_{target_gnu_system}_{compilation_mode}__[v{version}].tar",
-        "//:is_wip": "{product_name}_{target_gnu_system}_{compilation_mode}__[sha256:{commit_sha}].tar",
+        "//:is_release": "{product_name}_{target_gnu_system}_{compilation_mode}__v{version}.tar",
+        "//:is_wip": "{product_name}_{target_gnu_system}_{compilation_mode}__sha256-{commit_sha}.tar",
         "//conditions:default": "{product_name}_{target_gnu_system}_{compilation_mode}.tar",
     }),
 
