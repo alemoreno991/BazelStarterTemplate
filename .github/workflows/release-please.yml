@@ -121,6 +121,14 @@ jobs:
           # Make the tarball path available as an output variable from this step
           echo "TARBALL_PATH=${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
 
+      - name: Get release body
+        id: release-body
+        run: |
+          RESPONSE=$(curl -s \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ needs.release-please.outputs.tag_name }}")
+          echo "RELEASE_BODY=$(echo "$RESPONSE" | jq -r '.body')" >> "$GITHUB_OUTPUT"
+
       - name: Upload tarballs (binaries) to release
         uses: softprops/action-gh-release@v2
         with:
@@ -130,6 +138,8 @@ jobs:
             ${{ steps.build-tarballs-aarch64.outputs.TARBALL_PATH }}
           fail_on_unmatched_files: true
           body: |
+            ${{ steps.release-body.outputs.RELEASE_BODY }}
+
             ## Docker image
 
             Pull with:
