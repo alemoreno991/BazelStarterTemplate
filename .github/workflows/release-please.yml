@@ -74,9 +74,8 @@ jobs:
           # Save the tag of the oci image
           IMAGE_TAG="$(bazelisk cquery standalone:release-tags --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | xargs -r cat)"
           # Save the paths where the tarballs are located
-          TARBALLS_PATHS="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null)"
-          TARBALL_X86_64_PATH="$(${TARBALLS_PATHS} | grep x86_64)"
-          TARBALL_AARCH64_PATH="$(${TARBALLS_PATHS} | grep aarch64)"
+          TARBALL_X86_64_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' | grep x86_64)"
+          TARBALL_AARCH64_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' | grep aarch64)"
           BAZEL_EXEC_ROOT="$(bazelisk info execution_root)"
           {
             # Make the registry_url and the image tag available as an output var
