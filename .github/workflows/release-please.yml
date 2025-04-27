@@ -99,12 +99,12 @@ jobs:
           TARGET_ARCH="x86_64"
           bazelisk build standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --config="${TARGET_ARCH}"
           TARBALL_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --config="${TARGET_ARCH}" --output files)"
-          WORKDIR="$(pwd)"
-          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_PATH}"
+          # Copy the tarball to the current directory
+          cp "${WORKDIR}/${TARBALL_PATH}" .
+          TARBALL_FILENAME="$(basename "${TARBALL_PATH}")"
+          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_FILENAME}"
           # Make the tarball path available as an output variable from this step
-          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_PATH}" >> "$GITHUB_OUTPUT"
-          ls -l
-          file "${WORKDIR}/${TARBALL_PATH}"
+          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
 
       - name: Build tarball for aarch64 (binaries)
         id: build-tarballs-aarch64
@@ -114,12 +114,12 @@ jobs:
           TARGET_ARCH="aarch64"
           bazelisk build standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --config="${TARGET_ARCH}"
           TARBALL_PATH="$(bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --config="${TARGET_ARCH}" --output files)"
-          WORKDIR="$(pwd)"
-          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_PATH}"
+          # Copy the tarball to the current directory
+          cp "${WORKDIR}/${TARBALL_PATH}" .
+          TARBALL_FILENAME="$(basename "${TARBALL_PATH}")"
+          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_FILENAME}"
           # Make the tarball path available as an output variable from this step
-          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_PATH}" >> "$GITHUB_OUTPUT"
-          ls -l
-          file "${WORKDIR}/${TARBALL_PATH}"
+          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
 
       - name: Upload tarballs (binaries) to release
         uses: softprops/action-gh-release@v2
