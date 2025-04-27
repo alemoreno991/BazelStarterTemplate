@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.4...v2.0.5) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** authentication issue with github workflow ([#64](https://github.com/alemoreno991/BazelStarterTemplate/issues/64)) ([6f246e0](https://github.com/alemoreno991/BazelStarterTemplate/commit/6f246e0b835a479c09c7e6f9c3eabb4386d27b69))
+
 ## [2.0.4](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.3...v2.0.4) (2025-04-27)
 
 
