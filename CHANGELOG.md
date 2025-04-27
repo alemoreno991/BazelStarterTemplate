@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.20](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.19...v2.0.20) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** copy tarball ([#94](https://github.com/alemoreno991/BazelStarterTemplate/issues/94)) ([5d1dda2](https://github.com/alemoreno991/BazelStarterTemplate/commit/5d1dda242128e2eca0c8df4ad4c1aef896712ea5))
+
 ## [2.0.19](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.18...v2.0.19) (2025-04-27)
 
 
