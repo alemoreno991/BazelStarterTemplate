@@ -1,0 +1,3 @@
+bazel-out/k8-fastbuild-ST-4ac05e01db93/bin/standalone/my-cool-project_x86_64-unknown-linux-gnu_fastbuild__[v].tar
+bazel-out/k8-fastbuild-ST-3d047562dea0/bin/standalone/my-cool-project_aarch64-unknown-linux-gnu_fastbuild__[v].tar
+bazel-out/k8-fastbuild/bin/standalone/my-cool-project_x86_64-unknown-linux-gnu_fastbuild__[v].tar
