@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.17](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.16...v2.0.17) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** path tarball ([#88](https://github.com/alemoreno991/BazelStarterTemplate/issues/88)) ([d680e2a](https://github.com/alemoreno991/BazelStarterTemplate/commit/d680e2a27dbe945a95564c1f7661a4be4d89759f))
+
 ## [2.0.16](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.15...v2.0.16) (2025-04-27)
 
 
