@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.13](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.12...v2.0.13) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** final?? ([#80](https://github.com/alemoreno991/BazelStarterTemplate/issues/80)) ([457bbfc](https://github.com/alemoreno991/BazelStarterTemplate/commit/457bbfc92389512a0b6bd6bd475cdbce6b026943))
+
 ## [2.0.12](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.11...v2.0.12) (2025-04-27)
 
 
