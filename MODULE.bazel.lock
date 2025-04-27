@@ -609,7 +609,7 @@
     "@@rules_oci~//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "YiIkb7p8bu+IUo3WnO/qAHtBES0FYEqCNAERzg1cZ1o=",
-        "usagesDigest": "co4Hntc4FAIJk8Uv+EuiQBosfmG0wil230pFxERAkk8=",
+        "usagesDigest": "NfGyFueRFjAvX4xjp/JW/sqQYv16Yase4blrIWZsVqQ=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -833,7 +833,7 @@
     "@@toolchains_llvm~//toolchain/extensions:llvm.bzl%llvm": {
       "general": {
         "bzlTransitiveDigest": "afRF0aFOIUrkYl3o040WQ606ep1qciEXzjnAxT3Kek8=",
-        "usagesDigest": "AYv0gTTnceYaHu+2ju+qA2VuCIQUiSxMVU7Oq4hiRMQ=",
+        "usagesDigest": "LW3Yf8r5Loity8+b3NTqQmNwSqPwQ3kiprU3D/VMU6c=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
