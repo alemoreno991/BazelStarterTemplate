@@ -1,3 +1,6 @@
+# Configure credential-helper to download a prebuilt binary
+common --@tweag-credential-helper//bzl/config:helper_build_mode="auto"
+
 # rules_oci: disable builtin credential handling
 common --repo_env=OCI_GET_TOKEN_ALLOW_FAIL=1
 
