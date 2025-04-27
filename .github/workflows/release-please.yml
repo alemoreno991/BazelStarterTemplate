@@ -111,16 +111,25 @@ jobs:
             echo "TARBALL_AARCH64_PATH=${BAZEL_EXEC_ROOT}/${TARBALL_AARCH64_PATH}"
           } >> "$GITHUB_OUTPUT"
 
-      - name: Upload tarball x86_64 (binaries) to release
-        uses: svenstaro/upload-release-action@v2
+      - name: Upload tarballs (binaries) to release
+        uses: softprops/action-gh-release@v2
         env:
-          REGISTRY_URL: ${{ steps.build-push-oci-image.outputs.REGISTRY_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_REGISTRY_URL: ${{ steps.build-push-oci-image.outputs.REGISTRY_URL }}
           IMAGE_TAG: ${{ steps.build-push-oci-image.outputs.IMAGE_TAG }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./{${{ steps.build-push-oci-image.outputs.TARBALL_X86_64_PATH }},${{ steps.build-push-oci-image.outputs.TARBALL_AARCH64_PATH }}}
-          tag: ${{ github.ref }}
-          body: "Pull the oci image as follows:\n> docker pull ${REGISTRY_URL}/${IMAGE_TAG}"
+          files: |
+            ${{ steps.build-push-oci-image.outputs.TARBALL_X86_64_PATH }}
+            ${{ steps.build-push-oci-image.outputs.TARBALL_AARCH64_PATH }}
+          fail_on_unmatched_files: true
+          body: |
+            ## Docker image
+
+            Pull with:
+
+            ```
+            docker pull $IMAGE_REGISTRY_URL:$IMAGE_TAG
+            ```
 
       - name: Build Documentation
         # Always use bazelisk rather than bazel to
