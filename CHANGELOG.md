@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.3...v2.0.4) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** credential helper issue ([#62](https://github.com/alemoreno991/BazelStarterTemplate/issues/62)) ([aefbb7e](https://github.com/alemoreno991/BazelStarterTemplate/commit/aefbb7e4e7aa0d429e52d7dc2637ea1e88928cdc))
+
 ## [2.0.3](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.2...v2.0.3) (2025-04-27)
 
 
