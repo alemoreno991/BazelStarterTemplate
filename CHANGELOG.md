@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.23](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.22...v2.0.23) (2025-04-27)
+
+
+### Bug Fixes
+
+* **ci:** special character ([#100](https://github.com/alemoreno991/BazelStarterTemplate/issues/100)) ([a57cd88](https://github.com/alemoreno991/BazelStarterTemplate/commit/a57cd8846bba43370a503d696e1d6ab0ef4b9c29))
+
 ## [2.0.22](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.21...v2.0.22) (2025-04-27)
 
 
