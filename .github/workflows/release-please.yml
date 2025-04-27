@@ -102,9 +102,9 @@ jobs:
           # Copy the tarball to the current directory
           cp "${TARBALL_PATH}" .
           TARBALL_FILENAME="$(basename "${TARBALL_PATH}")"
-          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_FILENAME}"
+          echo "TARBALL_PATH: ${TARBALL_FILENAME}"
           # Make the tarball path available as an output variable from this step
-          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
+          echo "TARBALL_PATH=${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
 
       - name: Build tarball for aarch64 (binaries)
         id: build-tarballs-aarch64
@@ -117,9 +117,9 @@ jobs:
           # Copy the tarball to the current directory
           cp "${TARBALL_PATH}" .
           TARBALL_FILENAME="$(basename "${TARBALL_PATH}")"
-          echo "TARBALL_PATH: ${WORKDIR}/${TARBALL_FILENAME}"
+          echo "TARBALL_PATH: ${TARBALL_FILENAME}"
           # Make the tarball path available as an output variable from this step
-          echo "TARBALL_PATH=${WORKDIR}/${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
+          echo "TARBALL_PATH=${TARBALL_FILENAME}" >> "$GITHUB_OUTPUT"
 
       - name: Upload tarballs (binaries) to release
         uses: softprops/action-gh-release@v2
