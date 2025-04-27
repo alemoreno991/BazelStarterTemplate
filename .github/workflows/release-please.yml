@@ -77,9 +77,10 @@ jobs:
           echo ""
           echo "**************************************"
           echo "Saving the tarballs' paths to 'tarball_paths.txt'"
-          bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files 2>/dev/null | awk -F/ '!seen[$NF]++' > tarball_paths.txt
-          TARBALL_X86_64_PATH="$(grep x86_64 tarball_paths.txt)"
-          TARBALL_AARCH64_PATH="$(grep aarch64 tarball_paths.txt)"
+          bazelisk cquery standalone:tar --revision_mode=RELEASE --release_version="${SEMANTIC_VERSION}" --output files > tarball_paths.txt
+          cat tarball_paths.txt
+          TARBALL_X86_64_PATH="$(awk -F/ '!seen[$NF]++' tarball_paths.txt | grep x86_64)"
+          TARBALL_AARCH64_PATH="$(awk -F/ '!seen[$NF]++' tarball_paths.txt | grep aarch64)"
           echo "TARBALL_X86_64_PATH: ${TARBALL_X86_64_PATH}"
           echo "TARBALL_AARCH64_PATH: ${TARBALL_AARCH64_PATH}"
           echo "**************************************"
