@@ -1,7 +1,14 @@
+# Configure credential-helper to download a prebuilt binary
+common --@tweag-credential-helper//bzl/config:helper_build_mode="auto"
+
 # rules_oci: disable builtin credential handling
 common --repo_env=OCI_GET_TOKEN_ALLOW_FAIL=1
 
-# replace this with your registry of choice
+# Configure the credential-helper to be used for your domains
+# GitHub
+common --credential_helper=github.com=%workspace%/tools/credential-helper
+common --credential_helper=raw.githubusercontent.com=%workspace%/tools/credential-helper
+# Docker
 common --credential_helper=index.docker.io=%workspace%/tools/credential-helper
 
 # Build for aarch64 or x86_64
