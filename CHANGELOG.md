@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.27](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.26...v2.0.27) (2025-04-28)
+
+
+### Bug Fixes
+
+* **ci:** append to body ([#108](https://github.com/alemoreno991/BazelStarterTemplate/issues/108)) ([6901af7](https://github.com/alemoreno991/BazelStarterTemplate/commit/6901af7ffc5774392556237667e81ac8c8126330))
+
 ## [2.0.26](https://github.com/alemoreno991/BazelStarterTemplate/compare/v2.0.25...v2.0.26) (2025-04-27)
 
 
