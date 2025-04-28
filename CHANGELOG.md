@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.0.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.3.0...v2.0.0) (2025-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **nixos-compatibility:** Closes #31
+
+### Features
+
+* **cross-compile:** cross-compile from x86_64 to aarch64 ([#50](https://github.com/alemoreno991/BazelStarterTemplate/issues/50)) ([6084954](https://github.com/alemoreno991/BazelStarterTemplate/commit/608495419391c722bc43a44579c1bdab748c0122)), closes [#11](https://github.com/alemoreno991/BazelStarterTemplate/issues/11)
+* **semVer:** semantic versioning of artifacts ([#53](https://github.com/alemoreno991/BazelStarterTemplate/issues/53)) ([255e9e3](https://github.com/alemoreno991/BazelStarterTemplate/commit/255e9e3c45f0768ff91ca10c1cc4b9266dc77519)), closes [#38](https://github.com/alemoreno991/BazelStarterTemplate/issues/38)
+
+
+### Bug Fixes
+
+* **credential-helper:** fix unreliable behavior ([#52](https://github.com/alemoreno991/BazelStarterTemplate/issues/52)) ([80c6f3d](https://github.com/alemoreno991/BazelStarterTemplate/commit/80c6f3d3f0f8ac613a9e31a95424ab887461842f))
+* **credential-helper:** install credential-helper ([#46](https://github.com/alemoreno991/BazelStarterTemplate/issues/46)) ([1f9e886](https://github.com/alemoreno991/BazelStarterTemplate/commit/1f9e88677e42c90518b96f9e2cff12abdc158d2c)), closes [#45](https://github.com/alemoreno991/BazelStarterTemplate/issues/45)
+* **pre-commit:** pre-commit hook for commitizen ([#25](https://github.com/alemoreno991/BazelStarterTemplate/issues/25)) ([885ddf4](https://github.com/alemoreno991/BazelStarterTemplate/commit/885ddf4f8eb636c42e9d327574b5db0bbeebb569))
+
+
+### Performance Improvements
+
+* **ci:** avoid copying tarball unnecessarily ([#112](https://github.com/alemoreno991/BazelStarterTemplate/issues/112)) ([a7bf536](https://github.com/alemoreno991/BazelStarterTemplate/commit/a7bf53684663f2ec48faf13a1446bf83f3fcdda2))
+
+
+### Build System
+
+* **nixos-compatibility:** build system compatible with nixos ([#32](https://github.com/alemoreno991/BazelStarterTemplate/issues/32)) ([7b2718c](https://github.com/alemoreno991/BazelStarterTemplate/commit/7b2718cbbb39e8647a597e85ddb7ffcbfb4d5ad1))
+
 ## [1.3.0](https://github.com/alemoreno991/BazelStarterTemplate/compare/v1.2.0...v1.3.0) (2025-04-12)
 
 
