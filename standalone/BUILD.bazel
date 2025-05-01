@@ -7,6 +7,16 @@ load("//:bzl/transition.bzl", "multi_arch")
 
 package(default_visibility = ["//visibility:public"])
 
+# Make the files available to doxygen
+filegroup(
+    name = "sources",
+    srcs = glob([
+        "*.h",
+        "*.cpp",
+    ]),
+    visibility = ["//visibility:public"],
+)
+
 cc_binary(
     name = "hello-world",
     srcs = ["main.cpp"],
