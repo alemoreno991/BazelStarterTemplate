@@ -382,7 +382,7 @@
     "@@rules_doxygen~//:extensions.bzl%doxygen_extension": {
       "general": {
         "bzlTransitiveDigest": "LmEOagNxiU9i+X/SwfrOTTnA/Z/T+AgTohersbxJNtY=",
-        "usagesDigest": "fhf33DMoLe80vJhH+z2ckw59z2J0Q7ko+8A1jqcvx+U=",
+        "usagesDigest": "2Zk58ZUxJ3cvWxodvQiVX+BgcF936OCOvXVzeA7pPjU=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -609,7 +609,7 @@
     "@@rules_oci~//oci:extensions.bzl%oci": {
       "general": {
         "bzlTransitiveDigest": "YiIkb7p8bu+IUo3WnO/qAHtBES0FYEqCNAERzg1cZ1o=",
-        "usagesDigest": "r+SlirQTxEw4+c5Rdepqi+z+8E4XL1VVcI15leCLxKM=",
+        "usagesDigest": "bDGI0t2z2NUE0fJKy5azvnRAUF5FAjCg/mNNB8ILNlU=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},
@@ -833,7 +833,7 @@
     "@@toolchains_llvm~//toolchain/extensions:llvm.bzl%llvm": {
       "general": {
         "bzlTransitiveDigest": "afRF0aFOIUrkYl3o040WQ606ep1qciEXzjnAxT3Kek8=",
-        "usagesDigest": "9radV2G4Y0DbrG64rjuTbgEANNFaUqhujIsbUzQmXG4=",
+        "usagesDigest": "Ybnwg6itReiR+4mwVz5/75u3CdOMp4nGEYth3yE+3mg=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
         "envVariables": {},

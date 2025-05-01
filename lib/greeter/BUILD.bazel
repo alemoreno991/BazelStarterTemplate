@@ -5,3 +5,13 @@ cc_library(
     deps = [ "@fmt" ],
     visibility = [ "//visibility:public" ],
 )
+
+# Make the files available to doxygen
+filegroup(
+    name = "sources",
+    srcs = glob([
+        "include/*.h",
+        "src/*.cpp",
+    ]),
+    visibility = ["//visibility:public"],
+)
