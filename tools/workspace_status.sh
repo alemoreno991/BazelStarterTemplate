@@ -14,7 +14,7 @@ set -eo pipefail # exit immediately if any command fails.
 repo_url=$(git config --get remote.origin.url)
 commit_sha=$(git rev-parse HEAD)
 commit_sha_short=$(git rev-parse --short=6 HEAD)
-version_tag=$(jq -r '.["."]' .release-please-manifest.json)
+# version_tag=$(jq -r '.["."]' .release-please-manifest.json)
 
 echo "COMMIT_SHA $commit_sha"
 echo "REPO_URL $repo_url"
@@ -24,5 +24,5 @@ echo "REPO_URL $repo_url"
 # and you're building with the "--stamp" flag.
 echo "STABLE_GIT_COMMIT $commit_sha"
 echo "STABLE_GIT_COMMIT_SHORT $commit_sha_short"
-echo "STABLE_SEMANTIC_VERSION $version_tag"
+# echo "STABLE_SEMANTIC_VERSION $version_tag"
 echo "STABLE_IMAGE_REGISTRY ghcr.io/alemoreno991"
