@@ -11,12 +11,18 @@
 #
 set -eo pipefail # exit immediately if any command fails.
 
+function remove_url_credentials() {
+  which perl >/dev/null && perl -pe 's#//.*?:.*?@#//#' || cat
+}
+
+repo_url=$(git config --get remote.origin.url | remove_url_credentials)
+echo "REPO_URL $repo_url"
+
 commit_sha=$(git rev-parse HEAD)
 commit_sha_short=$(git rev-parse --short=6 HEAD)
-# version_tag=$(jq -r '.["."]' .release-please-manifest.json)
-
 echo "COMMIT_SHA $commit_sha"
-echo "REPO_URL https://github.com/alemoreno991/BazelStarterTemplate"
+
+# version_tag=$(jq -r '.["."]' .release-please-manifest.json)
 
 # Note: the "STABLE_" suffix causes these to be part of the "stable" workspace
 # status, which may trigger rebuilds of certain targets if these values change
