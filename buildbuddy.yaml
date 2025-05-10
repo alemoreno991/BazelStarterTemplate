@@ -1,0 +1,13 @@
+actions:
+  - name: "Test all targets"
+    container_image: "ubuntu-22.04"
+    timeout: "10m"
+    triggers:
+      push:
+        branches:
+          - "main"
+      pull_request:
+        branches:
+          - "*"
+    steps:
+      - run: "bazel test --config=ci //test/... --build_metadata=ROLE=CI"
