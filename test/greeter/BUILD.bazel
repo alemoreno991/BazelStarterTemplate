@@ -2,9 +2,9 @@ cc_test(
     name = "greeter_test",
     size = "small",
     srcs = [
-		"src/greeter.cpp",
-		"src/main.cpp",
-	],
+	"src/greeter.cpp",
+	"src/main.cpp",
+    ],
 
     deps = [
 	"//lib/greeter",
