@@ -11,13 +11,12 @@
 #
 set -eo pipefail # exit immediately if any command fails.
 
-repo_url=$(git config --get remote.origin.url)
 commit_sha=$(git rev-parse HEAD)
 commit_sha_short=$(git rev-parse --short=6 HEAD)
 # version_tag=$(jq -r '.["."]' .release-please-manifest.json)
 
 echo "COMMIT_SHA $commit_sha"
-echo "REPO_URL $repo_url"
+echo "REPO_URL https://github.com/alemoreno991/BazelStarterTemplate"
 
 # Note: the "STABLE_" suffix causes these to be part of the "stable" workspace
 # status, which may trigger rebuilds of certain targets if these values change
