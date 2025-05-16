@@ -10,5 +10,4 @@ actions:
         branches:
           - "*"
     steps:
-      - run: "bazel test --config=ci //test/... --build_metadata=ROLE=CI"
-      - run: "bazel test --config=ci //benchmark/... --build_metadata=ROLE=CI"
+      - run: "bazel test --config=ci //test/... //benchmark/... //integration/... --build_metadata=ROLE=CI"

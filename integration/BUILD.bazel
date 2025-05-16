@@ -1,0 +1,23 @@
+load("@rules_python//python:py_binary.bzl", "py_binary")
+load("@rules_python//python:pip.bzl", "compile_pip_requirements")
+
+# This rule generates two targets:
+#
+# `bazel run requirements.update` will regenerate the requirements_txt file
+#
+# `bazel test requirements_test` will test that the requirements_txt file is up to date
+#
+compile_pip_requirements(
+    name = "requirements",
+    src = "requirements.in",
+    requirements_txt = "requirements_lock_3_12.txt",
+)
+
+py_binary(
+    name = "integration_test",
+    srcs = ["integration_test.py"],
+    python_version="3.12",
+    deps = [
+        "@testcontainers_deps//numpy",
+    ],
+)
